@@ -3,31 +3,16 @@
 
 %% Water Filing para Maxima vazao do sistema
 
-%% Define Numerology
-Numerology = 1;
 
-if (Numerology == 1)
-     N = 132;
-     sc_per_rb = 48;
-     RE = 1;
-else
-     N = 132;
-     sc_per_rb = 12;
-     RE = 1;
-end
 
 %%
 TargetSer = 1e-3;                           %% SER Alvo
-%SNR = 0:2:30;                               %% XXX
-SNR = 3:3:21;
-%N = 6336;                                  %% Numero de Subportadoras
-b = zeros(1,N);                             %% Vetor de Bits das portadoras / Numerologia 3
+SNR = 3:3:21;                               %% SNR range
+N = 132;                                    %% Numero de Subportadoras
+b = zeros(1,N);                             %% Vetor de Bits das portadoras
 Total_bits = zeros(1,length(SNR));          %% Total de bits em um simbolo
-bits_per_rb = zeros(1,length(SNR));         %% qtd media de Bits por RB 
-quantizar = 'yes';                          %% 
-RB = 132;                                   %% qtd de RB
-%sc_per_rb = 48;                            %% SubCarriers per RB, depends numerology    
-nusers = 3;
+bits_per_rb = zeros(1,length(SNR));         %% qtd media de Bits por Subcarrier 
+nusers = 3;                                 %% Number of users    
 %% SNR gap para constelação M-QAM:
 Gamma=(1/3)*qfuncinv(TargetSer/4)^2; % Gap to channel capacity M-QAM
 
@@ -43,9 +28,9 @@ chan_EVA = rayleighchan((1/(freq_sample)),0,EVA_SR3072_Delay,EVA_SR3072_PowerdB_
 impulse= [1; zeros(N - 1,1)];  
 
 
-H    = ones(nusers,RB);
-mask = zeros(nusers,RB);
-capacity = zeros(nusers,RB);
+H    = ones(nusers,N);
+mask = zeros(nusers,N);
+capacity = zeros(nusers,N);
 
 user_aloc = zeros(length(SNR),nusers);
 
@@ -71,7 +56,7 @@ for i=1:length(SNR)
         
         for user=1:nusers
             mask(user,:) = ( abs(H(user,:))== max(abs(H)) ); % mask é 1 onde o user pode transmitir melhor
-            [~,~, capacity(user,:) ] = fcn_waterfilling(Pu, P/(SNRLIN*RB), Gamma, H(user,:), mask(user,:) );
+            [~,~, capacity(user,:) ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask(user,:) );
         end
 
    
@@ -115,7 +100,7 @@ for i=1:length(SNR)
     end
     
     Total_bits(i) = Total_bits(i)/num_itr;
-    bits_per_rb(i) = (Total_bits(i)/RB)*RE; 
+    bits_per_rb(i) = (Total_bits(i)/N); 
 end
 
 %% Loading File - Static data
@@ -136,7 +121,7 @@ figure;
 plot(SNR, bits_per_rb, '-o');
 %title('Alocação de Recursos em sistema de multiplo acesso Ortogonal');
 xlabel('SNR [dB]'); 
-ylabel('Bits/RB'); 
+ylabel('Bits/Subportadora'); 
 grid on;
 grid minor;
 

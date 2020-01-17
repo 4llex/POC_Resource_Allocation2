@@ -3,13 +3,11 @@
 
 %%
 N = 132;                                    %% Number of subcarriers
-RB = 132;                                   %% qtd de RB
 TargetSer = 1e-3;                           %% SER Alvo
-%SNR = 0:2:30;                               %% XXX
 SNR = 3:3:21;
 b = zeros(1,N);                             %% Vetor de Bits das portadoras / Numerologia 3
 Total_bits = zeros(1,length(SNR));          %% Total de bits em um simbolo
-bits_per_rb = zeros(1,length(SNR));         %% qtd media de Bits por RB 
+bits_per_rb = zeros(1,length(SNR));         %% qtd media de Bits por subcarrier 
 nusers = 3;
 
 %% SNR gap para constelação M-QAM:
@@ -53,9 +51,9 @@ for i=1:length(SNR)
         P  = 20;
         Pu = P/3;
         
-        [subPower1,~, subCapacity1 ] = fcn_waterfilling(Pu, P/(SNRLIN*RB), Gamma, H(user,:), mask1);
-        [subPower2,~, subCapacity2 ] = fcn_waterfilling(Pu, P/(SNRLIN*RB), Gamma, H(user,:), mask2);
-        [subPower3,~, subCapacity3 ] = fcn_waterfilling(Pu, P/(SNRLIN*RB), Gamma, H(user,:), mask3);
+        [subPower1,~, subCapacity1 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask1);
+        [subPower2,~, subCapacity2 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask2);
+        [subPower3,~, subCapacity3 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask3);
     
         b = subCapacity1 + subCapacity2 +  subCapacity3;
 
@@ -90,7 +88,7 @@ for i=1:length(SNR)
     end
     
     Total_bits(i) = Total_bits(i)/num_itr;
-    bits_per_rb(i) = (Total_bits(i)/RB); 
+    bits_per_rb(i) = (Total_bits(i)/N); 
 end
 
 %% Saving Vector in a File
@@ -106,6 +104,6 @@ figure;
 plot(SNR, bits_per_rb, '-.r*');
 title('Alocação Estática em sistema de multiplo acesso Ortogonal');
 xlabel('SNR [dB]'); 
-ylabel('Bits/RB'); 
+ylabel('Bits/Subcarrier'); 
 grid on;
 grid minor;

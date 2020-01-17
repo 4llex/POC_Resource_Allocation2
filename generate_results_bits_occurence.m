@@ -1,23 +1,25 @@
 %%% Script para gerar os resultados dos 3 algoritmos simulados
-%%% Gera os histogramas com a distribuição dos bits alocados pelos usuários
+%%% Gera os Qtd. de ocorrencia dos bits 0,2,4,6,8 no espectro
 
 %% Loading static.mat
 SimData=load('static.mat');
-staticSNR   = SimData.Static.DataSNR;
-staticBPRB  = SimData.Static.DataBPRB; 
-staticAlloc = SimData.Static.DataPDF; 
+%staticSNR   = SimData.Static.DataSNR;
+%staticBPRB  = SimData.Static.DataBPRB; 
+%staticAlloc = SimData.Static.DataPDF; 
 staticBit   = SimData.Static.DataBit;
-% Loading dynamicMaxVazao.mat
+
+%% Loading dynamicMaxVazao.mat
 DynamicData=load('dynamicMaxVazao.mat');
-dynamicSNR   = DynamicData.Dynamic.DataSNR;
-dynamicBPRB  = DynamicData.Dynamic.DataBPRB;
-dynamicAlloc = DynamicData.Dynamic.DataPDF;
+%dynamicSNR   = DynamicData.Dynamic.DataSNR;
+%dynamicBPRB  = DynamicData.Dynamic.DataBPRB;
+%dynamicAlloc = DynamicData.Dynamic.DataPDF;
 dynamicBit   = DynamicData.Dynamic.DataBit;
-% Loanding dynamicAWM.mat
+
+%% Loanding dynamicAWM.mat
 DynamicAWM_Data=load('dynamicAWM.mat'); 
-dynamicAWM_SNR   = DynamicAWM_Data.DynamicAWM.DataSNR;
-dynamicAWM_BPRB  = DynamicAWM_Data.DynamicAWM.DataBPRB;
-dynamicAWM_alloc = DynamicAWM_Data.DynamicAWM.DataPDF;
+%dynamicAWM_SNR   = DynamicAWM_Data.DynamicAWM.DataSNR;
+%dynamicAWM_BPRB  = DynamicAWM_Data.DynamicAWM.DataBPRB;
+%dynamicAWM_alloc = DynamicAWM_Data.DynamicAWM.DataPDF;
 dynamicAWM_bit   = DynamicAWM_Data.DynamicAWM.DataBit;
 
 
