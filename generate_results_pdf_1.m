@@ -36,6 +36,9 @@ for i=1:length(SNR)
     
     legend('Alocação Estática','Alocação Dinamica', 'AWM/MOM')
     xlim([0 150]); 
+    
+    grid on;
+    grid minor;
 
 end
 

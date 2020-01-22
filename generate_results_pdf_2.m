@@ -45,6 +45,9 @@ for i=1:length(SNR)
     
     str = sprintf("Histograma SNR: " + SNR(i) );
     title(str)
+    
+    grid on;
+    grid minor;
 end
 
 
