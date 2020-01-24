@@ -35,7 +35,7 @@ for i=1:length(SNR)
     %title('Histograma');
     
     legend('Alocação Estática','Alocação Dinamica', 'AWM/MOM')
-    xlim([0 150]); 
+    xlim([0 480]); 
     
     grid on;
     grid minor;
