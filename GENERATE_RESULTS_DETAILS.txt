@@ -1,0 +1,8 @@
+generate_results_pdf_1    -> primeira versao, pdf sobrepostas e transparentes
+
+generate_results_pdf_2    -> pdf sobrepostas mas com diferentes larguras de BINS
+
+generate_results_pdf_3_same_bin_width   -> derivada da 2, mas com mesma largura dos bins
+
+generate_results_pdf_4_wheberth -> ideia do wheberth, encontra os bins utilizando histogram
+e insere 0 0 das outra tecnicas, depois plota um bar de cada tecnica na mesma figura!
