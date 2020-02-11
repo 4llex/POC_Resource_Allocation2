@@ -8,12 +8,12 @@
 
 
 %%
+N = 132;                                    %% Number of subcarriers
 TargetSer = 1e-3;                           %% SER Alvo
 SNR = 3:3:21;                               %% SNR range
 b = zeros(1,N);                             %% Vetor de Bits das portadoras / Numerologia 3
 Total_bits = zeros(1,length(SNR));          %% Total de bits em um simbolo
 bits_per_rb = zeros(1,length(SNR));         %% qtd media de Bits por subportadora 
-N = 132;                                    %% Number of subcarriers
 nusers = 3;                                 %% Number of users
 %% SNR gap para constelação M-QAM:
 Gamma=(1/3)*qfuncinv(TargetSer/4)^2; % Gap to channel capacity M-QAM
