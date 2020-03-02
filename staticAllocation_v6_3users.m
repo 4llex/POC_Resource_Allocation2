@@ -51,9 +51,9 @@ for i=1:length(SNR)
         P  = 20;
         Pu = P/3;
         
-        [subPower1,~, subCapacity1 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask1);
-        [subPower2,~, subCapacity2 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask2);
-        [subPower3,~, subCapacity3 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(user,:), mask3);
+        [subPower1,~, subCapacity1 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(1,:), mask1);
+        [subPower2,~, subCapacity2 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(2,:), mask2);
+        [subPower3,~, subCapacity3 ] = fcn_waterfilling(Pu, P/(SNRLIN*N), Gamma, H(3,:), mask3);
     
         b = subCapacity1 + subCapacity2 +  subCapacity3;
 
